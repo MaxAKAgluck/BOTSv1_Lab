@@ -90,12 +90,33 @@ In previous sourcetype (stream:http) there are lots of requests from 40.80.148.4
 
 3 - Find the IP address of the web server serving "imreallynotbatman.com".
 
-Query - sourcetype="stream:http" imreallynotbatman.com | stats values(dest_ip)
+Query: sourcetype="stream:http" imreallynotbatman.com | stats values(dest_ip)
+
 There are two hits, 192.168.250.70 is the most frequent destination so it is the server's ip.
 
 4 - Find the name of the file used to deface the web server serving "imreallynotbatman.com". 
 
+First get a look at stream:http, we find an interesting field form_data
 
+<img width="801" height="250" alt="image" src="https://github.com/user-attachments/assets/c412610c-f9ef-4619-bacf-3daceb77d03f" />
+
+Then I got stuck :), looking at the hint, I filtered for events: sourcetype="stream:http" c_ip=192.168.250.70 | stats values(uri)
+
+And the answer is seen immediately:
+
+<img width="456" height="152" alt="image" src="https://github.com/user-attachments/assets/e3ad178b-97ac-4c42-be1f-01727affdc3e" />
+
+5 - Find the fully qualified domain name (FQDN) used by the staging server hosting the defacement file. 
+
+Query: sourcetype="stream:http" poisonivy-is-coming-for-you-batman.jpeg
+
+There are only 3 events and scrolling we find a field - site, which contains all we need.
+
+<img width="757" height="160" alt="image" src="https://github.com/user-attachments/assets/4888ac5c-6386-4d58-8c10-1e72b35db90e" />
+
+
+Answer is prankglassinebracket.jumpingcrab.com:1337.
+This one sounds easy and is easy - we simply search for events containing 
 _(I'll update this as I go — small wins count!)_
 
 ---
