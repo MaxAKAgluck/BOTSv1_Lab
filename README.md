@@ -78,6 +78,24 @@ sourcetype = "stream:http" imreallynotbatman.com src_headers="*Scanning PROHIBIT
 
 We see answer is Acunetix
 
+2 - Find the attacker's IP address. 
+
+In previous sourcetype (stream:http) there are lots of requests from 40.80.148.42, query all sources with this ip and we find it has lots of events in suricata, then final query is this: 
+
+40.80.148.42 sourcetype="suricata" | stats values(signature)
+
+<img width="1304" height="901" alt="image" src="https://github.com/user-attachments/assets/d981751b-fa04-4831-9534-a69344a0cf06" />
+
+40.80.148.42 is the answer
+
+3 - Find the IP address of the web server serving "imreallynotbatman.com".
+
+Query - sourcetype="stream:http" imreallynotbatman.com | stats values(dest_ip)
+There are two hits, 192.168.250.70 is the most frequent destination so it is the server's ip.
+
+4 - Find the name of the file used to deface the web server serving "imreallynotbatman.com". 
+
+
 _(I'll update this as I go — small wins count!)_
 
 ---
