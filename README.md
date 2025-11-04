@@ -1,7 +1,11 @@
 # 🕵️‍♂️ BOTSv1 Splunk Challenge — My Progress Log
 
 Welcome to my little corner of investigation chaos 😄  
-This repo tracks my journey through the **Splunk Boss of the SOC v1 (BOTSv1)** challenge — from initial setup to final flag!
+This repo is for tracking my own journey through BOTSv1 Splunk challenge
+Notes: 
+1. I didn't want to download BOTS dataset on my own PC and go through the process of spinning up my own Splunk Enterprise instance. I used an online instance with dataset loaded already, see resources for links. 
+2. I have almost no experience with such challenges and don't know advanced query language or tricks used by those regularly participating in such challenges.
+3. I used hints provided with questions when I got stuck and verified my answers on this writeup: [Writeup](https://medium.com/@sabinaaliy3va/splunk-botsv1-writeup-47b73a2eadac)
 
 ---
 
@@ -16,35 +20,27 @@ This is a hands-on way to level up threat hunting, detection, and analysis skill
 
 ## 🚀 My Goals
 
-- Learn how to navigate and query Splunk like a pro  
+- Learn how to navigate and query Splunk 
 - Practice real-world investigation and incident response techniques  
 - Document my process clearly enough for others (and future me)  
 - Add this as a practical project in my security portfolio  
 
 ---
 
-## 🛠 Setup Notes
-
-- **Splunk version:** (fill this in later)
-- **Dataset:** BOTSv1 (public Splunk dataset)
-- **Environment:** (local VM / Splunk Cloud / Docker / etc.)
-- **Start date:** (insert date here)
-
-Setup resources:
-- [Splunk BOTS portal](https://bots.splunk.com/)
+## 🛠 Resources
+- [Splunk instance](https://splunk.samsclass.info/)
+- [Splunk BOTS Questions](https://samsclass.info/50/proj/botsv1.htm)
 - [Official BOTSv1 Dataset](https://github.com/splunk/botsv1)
+- [Splunk Cheatsheet](https://github.com/splunk/botsv1)
 
 ---
 
 ## 🧩 Progress Log
 
-| Date | Stage | Notes |
-|------|--------|-------|
-| YYYY-MM-DD | Setup | Installed Splunk, imported dataset |
-| YYYY-MM-DD | Round 1 | Got familiar with the data sources (emails, proxy logs, etc.) |
-| YYYY-MM-DD | Round 2 | Solved first few questions, learning SPL filtering |
-| YYYY-MM-DD | Round 3 | Started connecting events across sources |
-| YYYY-MM-DD | ... | ... |
+| Date       |  Question | Notes |
+
+| 2025-11-04 |     1     |  |
+
 
 _(I'll update this as I go — small wins count!)_
 
@@ -64,15 +60,6 @@ A few early takeaways:
 - [Splunk SPL Cheatsheet](https://docs.splunk.com/Documentation/Splunk/latest/SearchReference/CheatSheet)
 - [TryHackMe: Splunk101 Room](https://tryhackme.com/room/splunk101)
 - [Splunk BOTS Overview Blog](https://www.splunk.com/en_us/blog.html)
-
----
-
-## 🏁 Next Steps
-
-- [ ] Finish all challenge questions  
-- [ ] Write short summaries of key investigations  
-- [ ] Add screenshots / query snippets  
-- [ ] Wrap up with final reflections  
 
 ---
 
