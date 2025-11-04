@@ -39,6 +39,7 @@ This is a hands-on way to level up threat hunting, detection, and analysis skill
 ## 🧩 Progress Log
 
 | Date       |                              Question                                                              |
+
  2025-11-04       1 - Find the brand name of the vulnerability scanner, covered by a green box in the image above.   
  
  Solving process:
