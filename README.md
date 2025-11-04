@@ -40,9 +40,12 @@ This is a hands-on way to level up threat hunting, detection, and analysis skill
 
 | Date       |                              Question                                                              |
  2025-11-04       1 - Find the brand name of the vulnerability scanner, covered by a green box in the image above.   
+ 
  Solving process:
  First, I wanted to get an overview of what sources we have, there is a useful cquery just for this purpose: "| metadata type=sourcetypes | table sourcetype |". 
+ 
  We see there are 21 (!) sourcetypes: 
+ 
 '''
 WinRegistry
 XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
@@ -67,7 +70,9 @@ syslog
 wineventlog
 '''
 The first question mentions we need to use stream:http and imreallynotbatman.com domain in our search. I also included a regex to search for "Scanning PROHIBITED" and limit results on page since I thought a lot of events will contain data from sec.scanner:
+
 sourcetype = "stream:http" imreallynotbatman.com src_headers="*Scanning PROHIBITED*" | table src_headers | head 30
+
 <img width="1230" height="446" alt="image" src="https://github.com/user-attachments/assets/415d7bab-d61c-4d48-b775-574230e6941a" />
 
 We see answer is Acunetix
