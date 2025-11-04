@@ -116,7 +116,7 @@ There are only 3 events and scrolling we find a field - site, which contains all
 
 
 Answer is prankglassinebracket.jumpingcrab.com:1337.
-This one sounds easy and is easy - we simply search for events containing 
+ 
 _(I'll update this as I go — small wins count!)_
 
 ---
