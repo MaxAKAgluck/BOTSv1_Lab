@@ -2,6 +2,7 @@
 
 Welcome to my little corner of investigation chaos 😄  
 This repo is for tracking my own journey through BOTSv1 Splunk challenge
+
 Notes: 
 1. I didn't want to download BOTS dataset on my own PC and go through the process of spinning up my own Splunk Enterprise instance. I used an online instance with dataset loaded already, see resources for links. 
 2. I have almost no experience with such challenges and don't know advanced query language or tricks used by those regularly participating in such challenges.
