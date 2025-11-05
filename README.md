@@ -116,6 +116,34 @@ There are only 3 events and scrolling we find a field - site, which contains all
 
 
 Answer is prankglassinebracket.jumpingcrab.com:1337.
+
+
+6 - In Level 1, you found the staging server domain name (used to host the defacement file). Find that server's IP adddress.
+
+The same query, in the same event just looking at dest_ip we see answer is 23.22.63.114.
+
+7 - Couldn't answer that without hint, which gave the answer right away - Alienvault is useful. (Link - https://otx.alienvault.com/indicator/ip/23.22.63.114)
+
+8 - Find the IP address performing a brute force attack against "imreallynotbatman.com".
+
+Tried a generic query in stream:http: sourcetype="stream:http" http_method=GET AND dest_ip=192.168.250.70
+
+<img width="804" height="150" alt="image" src="https://github.com/user-attachments/assets/a4c851f3-c07e-4604-826c-a1978080670a" />
+
+Hint said look for POST requests (also I filtered the Acunetix messages):
+
+Query: sourcetype="stream:http" http_method=POST AND dest_ip=192.168.250.70 AND src_headers!="*PROHIBITED*" AND dest_headers!="*PROHIBITED*" 
+
+<img width="799" height="120" alt="image" src="https://github.com/user-attachments/assets/f74f05da-2391-4c8b-bf50-facd2ca660ef" />
+
+Proceeded to look at requests by 23.22.63.114:
+
+<img width="779" height="417" alt="image" src="https://github.com/user-attachments/assets/2cd33ce5-1c28-487f-8eda-f01585839d81" />
+
+
+Form_data field had obvious bruteforce patterns.
+
+Answer - 23.22.63.114
  
 _(I'll update this as I go — small wins count!)_
 
