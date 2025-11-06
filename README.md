@@ -144,6 +144,28 @@ Proceeded to look at requests by 23.22.63.114:
 Form_data field had obvious bruteforce patterns.
 
 Answer - 23.22.63.114
+
+
+9 - 10 Find the name of the executable file the attacker uploaded to the server. Find the MD5 hash of that executable.
+
+Decided to search in same stream:http: sourcetype="stream:http" http_method=POST AND dest_ip=192.168.250.70 AND src_headers!="*PROHIBITED*" AND dest_headers!="*PROHIBITED*" *.exe* 
+
+Found only one event which has directory listing, it was awfull looking at all this chaotic data but I found a 3791.exe, for which I searched suricata logs: sourcetype="suricata" 3791.exe
+
+<img width="1318" height="777" alt="image" src="https://github.com/user-attachments/assets/95c21d15-5fd8-4575-9b17-92702d054a7c" />
+
+ Answer is 3791.exe
+
+Section is called sysmon so its logical to search for MD5 in sysmon events, started with a broad query: sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" 3791.exe
+
+Then noticed that there is "ParentCommandLine" and filtered for CommandLine=*3791.exe* : sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" CommandLine=*3791.exe*
+
+<img width="1989" height="232" alt="image" src="https://github.com/user-attachments/assets/b1ae74d7-e15d-423e-b902-6b7261a35574" />
+
+
+The hashes are there, we see MD5 is AAE3F5A29935E6ABCC2C2754D12A9AF0 which is the answer.
+
+11 - 
  
 _(I'll update this as I go — small wins count!)_
 
