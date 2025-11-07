@@ -165,7 +165,17 @@ Then noticed that there is "ParentCommandLine" and filtered for CommandLine=*379
 
 The hashes are there, we see MD5 is AAE3F5A29935E6ABCC2C2754D12A9AF0 which is the answer.
 
-11 - 
+11 - What was the first brute force password used?
+
+The question is a little vague, but I actually already know where to look - form_data field with username/passwd entries, query: sourcetype="stream:http" http_method=POST AND dest_ip=192.168.250.70 AND src_headers!="*PROHIBITED*" AND dest_headers!="*PROHIBITED*" form_data = "*&passwd=*" | stats values(form_data)
+
+<img width="1229" height="355" alt="image" src="https://github.com/user-attachments/assets/c40e12bd-caf8-405f-a23b-740fe5031dee" />
+
+But this doesn't give us the values in the timely order, so its better to use table: sourcetype="stream:http" http_method=POST AND dest_ip=192.168.250.70 AND src_headers!="*PROHIBITED*" AND dest_headers!="*PROHIBITED*" form_data = "*&passwd=*" | table form_data, timestamp | sort timestamp
+
+We get the passwords in ascending time order and the first one was 12345678.
+
+12 - 
  
 _(I'll update this as I go — small wins count!)_
 
