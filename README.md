@@ -175,7 +175,15 @@ But this doesn't give us the values in the timely order, so its better to use ta
 
 We get the passwords in ascending time order and the first one was 12345678.
 
-12 - 
+12 - What was the correct password found in the brute force attack?
+
+Looking in the same place as previous question, we sort in reverse order and find the last attempt was batman and it used a different query and user agent (Mozilla instead of Python urllib which was used for bruteforcing):
+
+<img width="1304" height="549" alt="image" src="https://github.com/user-attachments/assets/49583aec-54cd-45c7-bccc-aed63743244b" />
+
+So we conclude answer is batman.
+
+
  
 _(I'll update this as I go — small wins count!)_
 
