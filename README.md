@@ -183,6 +183,30 @@ Looking in the same place as previous question, we sort in reverse order and fin
 
 So we conclude answer is batman.
 
+13 - How many seconds elapsed between the time the brute force password scan identified the correct password and the compromised login? Round to 2 decimal places.
+
+Running the same query, because it identifies 2 events with correct password:
+
+sourcetype="stream:http" http_method=POST AND dest_ip=192.168.250.70 AND src_headers!="*PROHIBITED*" AND dest_headers!="*PROHIBITED*" form_data = "*&passwd=batman*"
+| eval epoch_time=strptime(timestamp, "%Y-%m-%dT%H:%M:%S.%6N") 
+| stats min(epoch_time) as first max(epoch_time) as second 
+| eval diff=round(second - first, 2)
+
+I had to use chatgpt to understand how to get the difference between fields, the answer we get is 98.32. However in writeup this is different because of using the splunk timestamps and not the event timestamps, I'm not sure what is right, technically event timestamps are more accurate.
+
+14 - How many unique passwords were attempted in the brute force attack?
+
+Easiest way is using this query: sourcetype="stream:http" http_method=POST AND dest_ip=192.168.250.70 AND src_headers!="*PROHIBITED*" AND dest_headers!="*PROHIBITED*" form_data = "*&passwd=*"| stats dc(form_data)
+
+However, we need to remember from previous examination that attacker used batman 2 times:
+
+<img width="1352" height="661" alt="image" src="https://github.com/user-attachments/assets/c474b3bb-1c2f-4476-8000-b1d0ad8de1df" />
+
+So a better query is by filtering for Python user agent (again, we identified its the bruteforce tool agent): sourcetype="stream:http" http_method=POST AND dest_ip=192.168.250.70 AND src_headers!="*PROHIBITED*" AND dest_headers!="*PROHIBITED*" form_data = "*&passwd=*" http_user_agent="Python-urllib/2.7"
+
+And we get 411 events which should be the correct answer.
+
+
 
  
 _(I'll update this as I go — small wins count!)_
