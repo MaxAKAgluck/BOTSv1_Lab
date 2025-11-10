@@ -38,11 +38,8 @@ This is a hands-on way to level up threat hunting, detection, and analysis skill
 
 ## 🧩 Progress Log
 
-| Date       |                              Question                                                              |
-
- 2025-11-04       1 - Find the brand name of the vulnerability scanner, covered by a green box in the image above.   
+ 1 - Find the brand name of the vulnerability scanner, covered by a green box in the image above.   
  
- Solving process:
  First, I wanted to get an overview of what sources we have, there is a useful cquery just for this purpose: "| metadata type=sourcetypes | table sourcetype |". 
  
  We see there are 21 (!) sourcetypes: 
@@ -70,7 +67,8 @@ suricata
 syslog
 wineventlog
 '''
-The first question mentions we need to use stream:http and imreallynotbatman.com domain in our search. I also included a regex to search for "Scanning PROHIBITED" and limit results on page since I thought a lot of events will contain data from sec.scanner:
+
+The first question mentions we need to use stream:http and imreallynotbatman.com domain in our search. I also included a regex to search for "Scanning PROHIBITED" and limit results on page since a hint suggested a lot of events will contain data from sec.scanner:
 
 sourcetype = "stream:http" imreallynotbatman.com src_headers="*Scanning PROHIBITED*" | table src_headers | head 30
 
