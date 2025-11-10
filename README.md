@@ -206,7 +206,23 @@ So a better query is by filtering for Python user agent (again, we identified it
 
 And we get 411 events which should be the correct answer.
 
+15 - What was the most likely IP address of we8105desk on 24AUG2016?
 
+Used 1:100 sampling for speed and searched for: sourcetype="*" we8105desk, identified 4 sourcetypes, sysmon probably won't help much with IP, so we search in wineventlog, which was probably a deadend (examined fields and no IP), went to smb logs:
+
+<img width="659" height="541" alt="image" src="https://github.com/user-attachments/assets/3caace48-247c-4ed7-8100-7bd1d410e6d8" />
+
+Answer is seen at once - 192.168.250.100
+
+16 - Amongst the Suricata signatures that detected the Cerber malware, which one alerted the fewest number of times? Submit ONLY the signature ID value as the answer. (No punctuation, just 7 integers.)
+
+An easy question - search: *Cerber* sourcetype="suricata", got this:
+
+<img width="1207" height="571" alt="image" src="https://github.com/user-attachments/assets/6e63d90a-7273-490d-b3c7-7aea0f1f3e95" />
+
+Answer is seen immediately - 2816763.
+
+17 - What fully qualified domain name (FQDN) does the Cerber ransomware attempt to direct the user to at the end of its encryption phase? 
 
  
 _(I'll update this as I go — small wins count!)_
