@@ -222,7 +222,27 @@ Answer is seen immediately - 2816763.
 
 17 - What fully qualified domain name (FQDN) does the Cerber ransomware attempt to direct the user to at the end of its encryption phase? 
 
- 
+Filtering for sourcetype="suricata" *Cerber* eventtype=suricata_eve_dns:
+
+7 events with dns records containing fqdn for Cerber malware: 
+
+{"timestamp":"2016-08-24T11:15:12.916218-0600","flow_id":4097325782,"in_iface":"eth1","event_type":"dns","src_ip":"192.168.250.20","src_port":53,"dest_ip":"192.168.250.100","dest_port":49456,"proto":"UDP","dns":{"type":"answer","id":61363,"rcode":"NXDOMAIN","rrname":"cerberhhyed5frqa.xmfir0.win"}}
+
+Answer is cerberhhyed5frqa.xmfir0.win
+
+18 - What was the first suspicious domain visited by we8105desk on 24AUG2016? 
+
+Used suricata logs agaiun and after analyzing a couple of fields used this query: 
+
+sourcetype="suricata" src_ip="192.168.250.100" eventtype=suricata_eve_http | table http.hostname, timestamp | uniq|  sort timestamp
+
+Answer is solidaritedeproximite.org, although it shows 0 alerts on virustotal: https://www.virustotal.com/gui/url/df2ddbde21a04a0c0cb92c00031111bc7dc9b001e0c5f0243943b0b01f2b7b55
+
+Other domains were obviously not harmful.
+
+19 - During the initial Cerber infection a VB script is run. The entire script from this execution, pre-pended by the name of the launching .exe, can be found in a field in Splunk. What is name of the first function defined in the VB script?
+
+
 _(I'll update this as I go — small wins count!)_
 
 ---
