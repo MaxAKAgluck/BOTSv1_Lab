@@ -28,11 +28,13 @@ This is a hands-on way to level up threat hunting, detection, and analysis skill
 
 ---
 
-## 🛠 Resources
+## 📎 Resources
 - [Splunk instance](https://splunk.samsclass.info/)
 - [Splunk BOTS Questions](https://samsclass.info/50/proj/botsv1.htm)
 - [Official BOTSv1 Dataset](https://github.com/splunk/botsv1)
-- [Splunk Cheatsheet](https://github.com/splunk/botsv1)
+- [Splunk SPL Cheatsheet](https://docs.splunk.com/Documentation/Splunk/latest/SearchReference/CheatSheet)
+- [TryHackMe: Splunk101 Room](https://tryhackme.com/room/splunk101)
+- [Splunk Blog](https://www.splunk.com/en_us/blog.html)
 
 ---
 
@@ -240,7 +242,27 @@ Answer is solidaritedeproximite.org, although it shows 0 alerts on virustotal: h
 
 Other domains were obviously not harmful.
 
-19 - During the initial Cerber infection a VB script is run. The entire script from this execution, pre-pended by the name of the launching .exe, can be found in a field in Splunk. What is name of the first function defined in the VB script?
+19/20 - During the initial Cerber infection a VB script is run. The entire script from this execution, pre-pended by the name of the launching .exe, can be found in a field in Splunk. What is name of the first function defined in the VB script? What is the length in characters of the value of this field? 
+
+The next 2 questions are too close to separate and they are closely related to previous one, so I searched for: sourcetype="*" *.vbs* we8105desk and got 16 hits, one of which was the answer, so full query: 
+
+sourcetype="*" *.vbs* we8105desk | eval length=len(CommandLine) | table CommandLine, length
+
+<img width="2554" height="757" alt="image" src="https://github.com/user-attachments/assets/ae59a38e-d328-4233-9f18-39079882c70b" />
+
+Answers are: FuNCtioN GNbiPp(Pt5SZ1) and 4490.
+
+21 - What is the name of the USB key inserted by Bob Smith?
+
+This required searching for keywords I could use and I found out FriendlyName appears every time you plug in a USB. First query was: 
+
+sourcetype="WinRegistry" *friendlyname*
+
+This brought up only 2 events:
+
+<img width="768" height="268" alt="image" src="https://github.com/user-attachments/assets/6ba779bd-c8b2-467b-bbaa-9aff311bfff4" />
+
+Answer is MIRANDA_PRI.
 
 
 _(I'll update this as I go — small wins count!)_
@@ -253,14 +275,6 @@ A few early takeaways:
 - Writing clear SPL queries is *half art, half science*  
 - Investigations flow better when I tag interesting events early  
 - Documentation saves sanity later on  
-
----
-
-## 📎 Resources & References
-
-- [Splunk SPL Cheatsheet](https://docs.splunk.com/Documentation/Splunk/latest/SearchReference/CheatSheet)
-- [TryHackMe: Splunk101 Room](https://tryhackme.com/room/splunk101)
-- [Splunk BOTS Overview Blog](https://www.splunk.com/en_us/blog.html)
 
 ---
 
